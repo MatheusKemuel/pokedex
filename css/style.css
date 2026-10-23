@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=REM:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=REM:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: inter, sans-serif;
+}
+
+:root {
+    --vermelho: #E53935;
+    --grafite: #20232D;
+    --off-white: #F7F7FA;
+    --branco: #fff;
+    --amarelo: #F4C542;
+}
+
+h1 {
+    font-family: REM, sans-serif;
+    font-style: italic;
+    font-size: 96px;
+}
