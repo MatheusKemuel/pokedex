@@ -320,6 +320,353 @@ footer hr {
 
 
 
+dialog {
+    background: none;
+    border: none;
+    width: min(1200px, calc(100% - 32px));
+    max-width: none;
+    padding: 0;
+    margin: auto;
+    position: fixed;
+    inset: 0;
+    container-type: inline-size;
+    max-height: calc(100dvh - 32px);
+    scrollbar-width: none;
+}
+
+dialog:focus {
+    outline: none;
+}
+
+dialog>img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+dialog::backdrop {
+    background-color: rgb(0 0 0 / .5);
+}
+
+.modal-details-left {
+    position: absolute;
+    top: 18%;
+    left: 10%;
+    background-color: var(--off-white);
+    height: 40cqw;
+    width: 29.1667%;
+    border-radius: 1.6667cqw;
+    padding: 1.6667cqw 0.8333cqw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8333cqw;
+    font-size: 1.3333cqw;
+}
+
+.modal-details-left figure {
+    width: 20.8333cqw;
+    max-width: 100%;
+    aspect-ratio: 1;
+    flex-shrink: 0;
+}
+
+.modal-details-left figure img {
+    display: block;
+    object-fit: contain;
+}
+
+.modal-poke-name {
+    font-size: 4cqw;
+}
+
+.pokemon-number {
+    font-size: larger;
+}
+
+.modal-details-right {
+    position: absolute;
+    top: 18%;
+    left: 43%;
+    background-color: var(--off-white);
+    min-height: 44.5cqw;
+    width: 48%;
+    border-radius: 1.6667cqw;
+    padding: 0.8333cqw 2.5833cqw 3cqw;
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.8333cqw;
+    font-size: 1.3333cqw;
+    line-height: 1.2;
+    color: #000;
+}
+
+
+.modal-right-title {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 0.8333cqw;
+}
+
+.modal-details-right img {
+    width: auto;
+    height: auto;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.modal-right-title h3 {
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+.modal-details-right hr {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid #d9d9d9;
+}
+
+.modal-measurements {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8333cqw;
+}
+
+.modal-measurement,
+.modal-abilities {
+    display: flex;
+    align-items: center;
+    gap: 1.5cqw;
+}
+
+.modal-measurement span,
+.modal-abilities p {
+    color: var(--grafite-light);
+}
+
+.modal-measurement strong {
+    display: block;
+    font-size: 1.5em;
+    font-weight: 400;
+    margin-top: 0.25em;
+}
+
+.modal-abilities {
+    min-height: 5.5833cqw;
+    gap: 2.3333cqw;
+}
+
+.modal-abilities h3 {
+    font-size: 1.25em;
+    font-weight: 600;
+}
+
+.modal-stats {
+    display: grid;
+    gap: 0.8333cqw;
+}
+
+.modal-stats-title {
+    display: flex;
+    align-items: center;
+    gap: 0.8333cqw;
+}
+
+.modal-stats-title h3 {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.modal-stat {
+    display: grid;
+    grid-template-columns: 25% minmax(0, 1fr) 16%;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.modal-stat>span:last-child {
+    text-align: right;
+}
+
+.stat-track {
+    height: 1cqw;
+    background: #d9d9d9;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.stat-track>span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+}
+
+.stat-hp {
+    width: 44%;
+    background: #4dff1b;
+}
+
+.stat-attack {
+    width: 47%;
+    background: #ff0004;
+}
+
+.stat-defense {
+    width: 48%;
+    background: #ffe11b;
+}
+
+.stat-speed {
+    width: 45%;
+    background: #4872ff;
+}
+
+.modal-navigation {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8333cqw;
+}
+
+.modal-navigation button {
+    min-height: 3.8333cqw;
+    padding: 0.5em;
+    border: 1px solid var(--grafite-light);
+    border-radius: 28px;
+    background: var(--off-white);
+    color: #000;
+    font: inherit;
+    box-shadow: 0 4px 2px rgb(0 0 0 / 25%);
+    cursor: pointer;
+}
+
+.modal-navigation .modal-next {
+    background: var(--vermelho);
+    color: var(--off-white);
+}
+
+.modal-navigation button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+
+
+.modal-close {
+    position: absolute;
+    top: 8.5%;
+    right: 5%;
+    width: 5cqw;
+    height: 5cqw;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 3.5cqw;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 1;
+    background-color: var(--grafite);
+    border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    dialog {
+        background: var(--vermelho);
+        border-radius: 16px;
+        padding: 24px 12px;
+    }
+
+    .modal-close {
+        top: 4px;
+        right: 4px;
+        width: 36px;
+        height: 36px;
+        font-size: 28px;
+        background: var(--grafite);
+        border-radius: 50%;
+    }
+
+    dialog>img {
+        display: none;
+    }
+
+    .modal-details-left,
+    .modal-details-right {
+        position: static;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        border-radius: 20px;
+        padding: 16px 14px;
+        font-size: 16px;
+        gap: 10px;
+    }
+
+    .modal-details-left {
+        margin-bottom: 20px;
+    }
+
+    .modal-details-left figure {
+        width: min(218px, 100%);
+    }
+
+    .modal-poke-name {
+        font-size: clamp(28px, 8vw, 48px);
+    }
+
+    .modal-right-title,
+    .modal-stats-title,
+    .modal-stats,
+    .modal-navigation {
+        gap: 10px;
+    }
+
+    .modal-measurements {
+        gap: 8px;
+    }
+
+    .modal-measurement {
+        gap: 8px;
+    }
+
+    .modal-measurement strong {
+        white-space: nowrap;
+        font-size: clamp(20px, 6vw, 24px);
+    }
+
+    .modal-abilities {
+        min-height: 67px;
+        gap: 20px;
+    }
+
+    .modal-stat {
+        grid-template-columns: 5.5em minmax(0, 1fr) 1.5em;
+    }
+
+    .stat-track {
+        height: 12px;
+    }
+
+    .modal-navigation button {
+        min-height: 46px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 360px) {
+    .modal-navigation {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-abilities {
+        gap: 10px;
+    }
+}
+
+
 
 
 /* Responsividade */
@@ -368,11 +715,14 @@ footer hr {
 }
 
 @media (max-width: 768px) {
-    .footer-bot, .footer-top {
+
+    .footer-bot,
+    .footer-top {
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
+
     footer {
         text-align: center;
     }

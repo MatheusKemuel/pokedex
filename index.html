@@ -113,7 +113,31 @@
 
                 <img src="./assets/001.png" alt="Bulbasaur">
 
-                <h3>Bulbasaur</h3>
+                <h3>Bulbasaur2</h3>
+
+                <div class="pokemon-types">
+                    <span>Planta</span>
+                    <span>Veneno</span>
+                </div>
+            </button>
+            <button class="pokemon-card" type="button" data-id="1">
+                <span class="pokemon-number">#001</span>
+
+                <img src="./assets/001.png" alt="Bulbasaur">
+
+                <h3>Bulbasaur3</h3>
+
+                <div class="pokemon-types">
+                    <span>Planta</span>
+                    <span>Veneno</span>
+                </div>
+            </button>
+            <button class="pokemon-card" type="button" data-id="1">
+                <span class="pokemon-number">#001</span>
+
+                <img src="./assets/001.png" alt="Bulbasaur">
+
+                <h3>Bulbasaur4</h3>
 
                 <div class="pokemon-types">
                     <span>Planta</span>
@@ -204,36 +228,78 @@
                     <span>Veneno</span>
                 </div>
             </button>
-            <button class="pokemon-card" type="button" data-id="1">
-                <span class="pokemon-number">#001</span>
 
-                <img src="./assets/001.png" alt="Bulbasaur">
-
-                <h3>Bulbasaur</h3>
-
-                <div class="pokemon-types">
-                    <span>Planta</span>
-                    <span>Veneno</span>
-                </div>
-            </button>
-            <button class="pokemon-card" type="button" data-id="1">
-                <span class="pokemon-number">#001</span>
-
-                <img src="./assets/001.png" alt="Bulbasaur">
-
-                <h3>Bulbasaur</h3>
-
-                <div class="pokemon-types">
-                    <span>Planta</span>
-                    <span>Veneno</span>
-                </div>
-            </button>
-
-            <div class="paginacao-btns">
-                <button class="anterior">&lt;Anterior</button>
-                <button class="proxima">Próxima&gt;</button>
-            </div>
         </section>
+        <div class="paginacao-btns">
+            <button class="anterior">&lt;Anterior</button>
+            <button class="proxima">Próxima&gt;</button>
+        </div>
+
+        <dialog aria-label="Detalhes do Pokémon">
+            <img src="./assets/Moldura HUD futurista vermelha__end__.png" alt="">
+            <article class="modal-details-left">
+                <span class="pokemon-number">#001</span>
+                <figure>
+                    <img src="./assets/001.png" alt="Bulbasaur">
+                </figure>
+                <h3 class="modal-poke-name">Bulbasaur</h3>
+
+                <div class="pokemon-types">
+                    <span>Planta</span>
+                    <span>Veneno</span>
+                </div>
+            </article>
+            <article class="modal-details-right">
+                <div class="modal-right-title">
+                    <img src="./assets/icons/modal-pokeball.svg" alt="">
+                    <h3>Descrição</h3>
+                </div>
+                <p class="modal-description">Bulbasaur pode ser visto dormindo sob a luz do sol.
+                    Há uma semente em suas costas que cresce junto
+                    com ele.</p>
+                <hr>
+                <div class="modal-measurements">
+                    <div class="modal-measurement">
+                        <img src="./assets/icons/modal-ruler.svg" alt="">
+                        <p><span>Altura</span><strong>0,7m</strong></p>
+                    </div>
+                    <div class="modal-measurement">
+                        <img src="./assets/icons/modal-weight.svg" alt="">
+                        <p><span>Peso</span><strong>6,9 kg</strong></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="modal-abilities">
+                    <img src="./assets/icons/modal-star.svg" alt="">
+                    <div>
+                        <h3>Habilidades</h3>
+                        <p>Overgrow - Clorophyll</p>
+                    </div>
+                </div>
+                <section class="modal-stats" aria-labelledby="stats-title">
+                    <div class="modal-stats-title">
+                        <img src="./assets/icons/modal-chart.svg" alt="">
+                        <h3 id="stats-title">Estatísticas Base</h3>
+                    </div>
+                    <div class="modal-stat"><span>HP</span><span class="stat-track" aria-hidden="true"><span
+                                class="stat-hp"></span></span><span>45</span></div>
+                    <div class="modal-stat"><span>Ataque</span><span class="stat-track" aria-hidden="true"><span
+                                class="stat-attack"></span></span><span>49</span></div>
+                    <div class="modal-stat"><span>Defesa</span><span class="stat-track" aria-hidden="true"><span
+                                class="stat-defense"></span></span><span>49</span></div>
+                    <div class="modal-stat"><span>Velocidade</span><span class="stat-track" aria-hidden="true"><span
+                                class="stat-speed"></span></span><span>45</span></div>
+                </section>
+                <hr>
+                <nav class="modal-navigation" aria-label="Navegar entre Pokémon">
+                    <button type="button" class="modal-previous">&lt; Pokémon Anterior</button>
+                    <button type="button" class="modal-next">Próximo Pokémon &gt;</button>
+                </nav>
+            </article>
+            <button type="button" class="modal-close" aria-label="Fechar modal">
+                &times;
+            </button>
+        </dialog>
 
         <footer>
             <div class="footer-top">
