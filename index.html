@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/script.js" defer></script>
 </head>
+
 <body>
     <header>
         <figure class="logo">
@@ -16,18 +18,74 @@
         </figure>
     </header>
 
-    <section class="hero">
-        <div class="hero-texts">
-            <h2>Explore o mundo</h2>
-            <h1>Pokemon!</h1>
-            <p class="header-description">Descubra conheça e explore todos os Pokémons da Pokédex.</p>
-        </div>
-        <img src="./assets/Banner Pokémon com Pikachu e Poké Bola.png" alt="" class="banner-mobile">
-    </section>
-    <form>
-        <input type="text" class="search-bar" placeholder="Buscar por nome ou número...">
-        <img src="./assets/icons/tabler-icon-search.svg" alt="" class="search-icon">
-    </form>
-    
+    <main>
+        <section class="hero">
+            <div class="hero-texts">
+                <h2>Explore o mundo</h2>
+                <h1>Pokemon!</h1>
+                <p class="header-description">Descubra conheça e explore todos os Pokémons da Pokédex.</p>
+            </div>
+            <img src="./assets/Banner Pokémon com Pikachu e Poké Bola.png" alt="" class="banner-mobile">
+        </section>
+        <form>
+            <input type="text" class="search-bar" placeholder="Buscar por nome ou número...">
+            <img src="./assets/icons/tabler-icon-search.svg" alt="" class="search-icon">
+        </form>
+
+        <section class="filters">
+            <div class="filters-left">
+                <img src="./assets/icons/filter.svg" alt="">
+                <p>Filtrar por tipo:</p>
+            </div>
+            <div class="filters-center">
+                <article class="filters-active">
+                    <img src="./assets/icons/tabler-icon-pokeball.svg" alt="">
+                    <p>Todos</p>
+                </article>
+                <article class="">
+                    <img src="./assets/icons/tabler-icon-leaf.svg" alt="">
+                    <p>Planta</p>
+                </article>
+                <article class="">
+                    <img src="./assets/icons/tabler-icon-flame.svg" alt="">
+                    <p>Fogo</p>
+                </article>
+                <article class="">
+                    <img src="./assets/icons/tabler-icon-droplet.svg" alt="">
+                    <p>Água</p>
+                </article>
+                <article class="">
+                    <img src="./assets/icons/tabler-icon-bolt.svg" alt="">
+                    <p>Elétrico</p>
+                </article>
+                <article class="">
+                    <img src="./assets/icons/tabler-icon-brain.svg" alt="">
+                    <p>Psíquico</p>
+                </article>
+                <article class="">
+                    <img src="./assets/icons/tabler-icon-mountain.svg" alt="">
+                    <p>Terra</p>
+                </article>
+                <article class="">
+                    <img src="./assets/icons/tabler-icon-snowflake.svg" alt="">
+                    <p>Gelo</p>
+                </article>
+                <article class="">
+                    <img src="./assets/icons/tabler-icon-moon.svg" alt="">
+                    <p>Noturno</p>
+                </article>
+            </div>
+            <div class="filters-right">
+                <article class="">
+                    <img src="./assets/icons/tabler-icon-refresh.svg" alt="">
+                    <p>Limpar</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+
+
 </body>
+
 </html>
