@@ -8,6 +8,10 @@
     font-family: inter, sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
     --vermelho: #E53935;
     --grafite: #20232D;
@@ -15,6 +19,11 @@
     --branco: #fff;
     --amarelo: #F4C542;
     --grafite-light: #747A8E;
+}
+
+main {
+    background-image: url("../assets/Padrão\ Minimalista\ de\ Poké\ Bolas\ e\ Estrelas.png");
+    background-size: cover;
 }
 
 img {
@@ -84,57 +93,7 @@ header {
     object-fit: cover;
 }
 
-@media (max-width: 1330px) {
-    .hero {
-        padding: 80px 0 0 20px;
-    }
 
-    .hero-texts {
-        max-width: 400px;
-    }
-
-}
-
-@media (max-width: 1024px) {
-    h1 {
-        font-size: 84px;
-    }
-
-    header {
-        padding: 0 30px;
-    }
-}
-
-@media (max-width: 880px) {
-    h1 {
-        font-size: 64px;
-    }
-
-    .header-description {
-        font-size: large;
-    }
-}
-
-@media (max-width: 480px) {
-    .banner-mobile {
-        display: block;
-        object-position: right center;
-    }
-
-    .hero {
-        background-image: none;
-        padding: 20px 0 0 0;
-    }
-
-    h1 {
-        font-size: 48px;
-    }
-
-    .hero-texts {
-        text-align: center;
-        padding: 10px;
-    }
-}
 
 /* Barra de pesquisa */
 
@@ -176,7 +135,160 @@ form {
     pointer-events: none;
 }
 
+
+/* Filtros */
+
+.filters-left {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filters-left img{
+    width: 24px;
+}
+
+
+
+.filters-center {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.filters-center article {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding: 5px 10px;
+    justify-content: center;
+    border-radius: 50px;
+    box-shadow: 1px 12px 15px -4px rgba(0, 0, 0, 0.2);
+    background-color: var(--off-white);
+    font-size: larger;
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover {
+        background-color: rgb(199, 199, 199);
+    }
+}
+
+.filters-center article.filters-active {
+    background-color: var(--grafite);
+    color: var(--off-white);
+}
+
+.filters-center article img {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+}
+
+.filters-right article img {
+    width: 36px;
+    height: 36px;
+}
+
+.filters-right article {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding: 5px 10px;
+    justify-content: center;
+    border-radius: 50px;
+    box-shadow: 1px 12px 15px -4px rgba(0, 0, 0, 0.2);
+    background-color: var(--off-white);
+    font-size: larger;
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover {
+        background-color: rgb(199, 199, 199);
+    }
+}
+
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin:30px 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Responsividade */
+
+@media (max-width: 1330px) {
+    .hero {
+        padding: 80px 0 0 20px;
+    }
+
+    .hero-texts {
+        max-width: 400px;
+    }
+
+   
+
+}
+
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 84px;
+    }
+
+    header {
+        padding: 0 30px;
+    }
+     .filters {
+        flex-direction: column;
+       align-items: center;
+       gap: 30px;
+    }
+
+    .filters-center {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 880px) {
+    h1 {
+        font-size: 64px;
+    }
+
+    .header-description {
+        font-size: large;
+    }
+}
+
 @media (max-width: 480px) {
+    .banner-mobile {
+        display: block;
+        object-position: right center;
+    }
+
+    .hero {
+        background-image: none;
+        padding: 20px 0 0 0;
+    }
+
+    h1 {
+        font-size: 48px;
+    }
+
+    .hero-texts {
+        text-align: center;
+        padding: 10px;
+    }
+
     form {
         margin-top: 125px;
     }
@@ -192,6 +304,7 @@ form {
         height: 24px;
         left: 14px;
     }
+
     .hero-texts {
         margin: 0 auto;
     }
