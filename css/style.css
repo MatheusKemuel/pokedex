@@ -14,18 +14,29 @@
     --off-white: #F7F7FA;
     --branco: #fff;
     --amarelo: #F4C542;
+    --grafite-light: #747A8E;
 }
 
 img {
     width: 100%;
     height: 100%;
-  
+
 }
 
 h1 {
     font-family: REM, sans-serif;
     font-style: italic;
     font-size: 96px;
+    color: var(--vermelho);
+}
+
+h2 {
+    font-family: inter, sans-serif;
+}
+
+.header-description {
+    color: var(--grafite-light);
+    font-size: x-large;
 }
 
 /*********Nav-bar********/
@@ -36,7 +47,7 @@ header {
     height: 86px;
     justify-content: space-between;
     align-items: center;
-    padding: 0 30px;
+    padding: 0 100px;
 }
 
 .logo {
@@ -47,4 +58,141 @@ header {
 .profile-pic {
     width: 52px;
     height: 52px;
+}
+
+/* Hero */
+
+.hero {
+    width: 100%;
+    height: 378px;
+    background-image: url("../assets/Banner\ Pokémon\ com\ Pikachu\ e\ Poké\ Bola.png");
+    background-position: left 40%;
+    background-size: cover;
+    padding: 80px 0 0 100px;
+    -webkit-box-shadow: -1px 2px 7px 1px rgba(0, 0, 0, 0.50);
+    box-shadow: -1px 2px 7px 1px rgba(0, 0, 0, 0.50);
+}
+
+.hero-texts {
+    max-width: 550px;
+    /* background-color: red; */
+    /* margin: 150px auto; */
+}
+
+.banner-mobile {
+    display: none;
+    object-fit: cover;
+}
+
+@media (max-width: 1330px) {
+    .hero {
+        padding: 80px 0 0 20px;
+    }
+
+    .hero-texts {
+        max-width: 400px;
+    }
+
+}
+
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 84px;
+    }
+
+    header {
+        padding: 0 30px;
+    }
+}
+
+@media (max-width: 880px) {
+    h1 {
+        font-size: 64px;
+    }
+
+    .header-description {
+        font-size: large;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-mobile {
+        display: block;
+        object-position: right center;
+    }
+
+    .hero {
+        background-image: none;
+        padding: 20px 0 0 0;
+    }
+
+    h1 {
+        font-size: 48px;
+    }
+
+    .hero-texts {
+        text-align: center;
+        padding: 10px;
+    }
+}
+
+/* Barra de pesquisa */
+
+form {
+    width: calc(100% - 32px);
+    max-width: 550px;
+    display: flex;
+    justify-content: center;
+    margin: -25px auto 0;
+    position: relative;
+}
+
+.search-bar {
+    width: 100%;
+    min-width: 0;
+    height: 60px;
+    border-radius: 50px;
+    outline: none;
+    padding: 10px 20px 10px 65px;
+    border: 1px solid rgb(232, 231, 231);
+    box-shadow: 1px 12px 15px -4px rgba(0, 0, 0, 0.2);
+    color: var(--grafite-light);
+    font-size: large;
+    transition: .3s;
+
+}
+
+.search-bar:focus {
+    border: 1px solid var(--vermelho);
+}
+
+.search-icon {
+    width: 33px;
+    height: 33px;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+@media (max-width: 480px) {
+    form {
+        margin-top: 125px;
+    }
+
+    .search-bar {
+        height: 52px;
+        padding: 10px 14px 10px 46px;
+        font-size: 16px;
+    }
+
+    .search-icon {
+        width: 24px;
+        height: 24px;
+        left: 14px;
+    }
+    .hero-texts {
+        margin: 0 auto;
+    }
 }
