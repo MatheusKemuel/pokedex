@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./assets/Pokebola-pokeball-png-0.png" type="image/x-icon">
     <script src="./js/script.js" defer></script>
 </head>
 
 <body>
-    <header>
+    <header id="header">
         <figure class="logo">
-            <img src="./assets/375px-Pokédex_logo(1).png" alt="">
+            <a href="index.html">
+                <img src="./assets/375px-Pokédex_logo(1).png" alt="">
+            </a>
         </figure>
         <figure class="profile-pic">
             <img src="./assets/treinador-de-pokemon.png" alt="">
@@ -27,8 +31,8 @@
             </div>
             <img src="./assets/Banner Pokémon com Pikachu e Poké Bola.png" alt="" class="banner-mobile">
         </section>
-        <form>
-            <input type="text" class="search-bar" placeholder="Buscar por nome ou número...">
+        <form class="form">
+            <input type="text" class="search-bar" placeholder="Buscar por nome ou número..." required>
             <img src="./assets/icons/tabler-icon-search.svg" alt="" class="search-icon">
         </form>
 
@@ -43,36 +47,76 @@
                     <p>Todos</p>
                 </article>
                 <article class="">
-                    <img src="./assets/icons/tabler-icon-leaf.svg" alt="">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/12.png" alt="">
                     <p>Planta</p>
                 </article>
                 <article class="">
-                    <img src="./assets/icons/tabler-icon-flame.svg" alt="">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/10.png" alt="">
                     <p>Fogo</p>
                 </article>
                 <article class="">
-                    <img src="./assets/icons/tabler-icon-droplet.svg" alt="">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/11.png" alt="">
                     <p>Água</p>
                 </article>
                 <article class="">
-                    <img src="./assets/icons/tabler-icon-bolt.svg" alt="">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/13.png" alt="">
                     <p>Elétrico</p>
                 </article>
                 <article class="">
-                    <img src="./assets/icons/tabler-icon-brain.svg" alt="">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/14.png" alt="">
                     <p>Psíquico</p>
                 </article>
                 <article class="">
-                    <img src="./assets/icons/tabler-icon-mountain.svg" alt="">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/5.png" alt="">
                     <p>Terra</p>
                 </article>
                 <article class="">
-                    <img src="./assets/icons/tabler-icon-snowflake.svg" alt="">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/15.png" alt="">
                     <p>Gelo</p>
                 </article>
                 <article class="">
-                    <img src="./assets/icons/tabler-icon-moon.svg" alt="">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/17.png" alt="">
                     <p>Noturno</p>
+                </article>
+                <article data-type="normal">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/1.png" alt="">
+                    <p>Normal</p>
+                </article>
+                <article data-type="fighting">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/2.png" alt="">
+                    <p>Lutador</p>
+                </article>
+                <article data-type="flying">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/3.png" alt="">
+                    <p>Voador</p>
+                </article>
+                <article data-type="poison">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/4.png" alt="">
+                    <p>Veneno</p>
+                </article>
+                <article data-type="rock">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/6.png" alt="">
+                    <p>Pedra</p>
+                </article>
+                <article data-type="bug">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/7.png" alt="">
+                    <p>Inseto</p>
+                </article>
+                <article data-type="ghost">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/8.png" alt="">
+                    <p>Fantasma</p>
+                </article>
+                <article data-type="steel">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/9.png" alt="">
+                    <p>Aço</p>
+                </article>
+                <article data-type="dragon">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/16.png" alt="">
+                    <p>Dragão</p>
+                </article>
+                <article data-type="fairy">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/18.png" alt="">
+                    <p>Fada</p>
                 </article>
             </div>
             <div class="filters-right">
@@ -83,151 +127,7 @@
             </div>
         </section>
 
-        <section class="cards">
-            <button class="pokemon-card" type="button" data-id="1">
-                <span class="pokemon-number">#001</span>
-
-                <img src="./assets/001.png" alt="Bulbasaur">
-
-                <h3>Bulbasaur</h3>
-
-                <div class="pokemon-types">
-                    <span>Planta</span>
-                    <span>Veneno</span>
-                </div>
-            </button>
-            <button class="pokemon-card" type="button" data-id="1">
-                <span class="pokemon-number">#001</span>
-
-                <img src="./assets/001.png" alt="Bulbasaur">
-
-                <h3>Bulbasaur</h3>
-
-                <div class="pokemon-types">
-                    <span>Planta</span>
-                    <span>Veneno</span>
-                </div>
-            </button>
-            <button class="pokemon-card" type="button" data-id="1">
-                <span class="pokemon-number">#001</span>
-
-                <img src="./assets/001.png" alt="Bulbasaur">
-
-                <h3>Bulbasaur2</h3>
-
-                <div class="pokemon-types">
-                    <span>Planta</span>
-                    <span>Veneno</span>
-                </div>
-            </button>
-            <button class="pokemon-card" type="button" data-id="1">
-                <span class="pokemon-number">#001</span>
-
-                <img src="./assets/001.png" alt="Bulbasaur">
-
-                <h3>Bulbasaur3</h3>
-
-                <div class="pokemon-types">
-                    <span>Planta</span>
-                    <span>Veneno</span>
-                </div>
-            </button>
-            <button class="pokemon-card" type="button" data-id="1">
-                <span class="pokemon-number">#001</span>
-
-                <img src="./assets/001.png" alt="Bulbasaur">
-
-                <h3>Bulbasaur4</h3>
-
-                <div class="pokemon-types">
-                    <span>Planta</span>
-                    <span>Veneno</span>
-                </div>
-            </button>
-            <button class="pokemon-card" type="button" data-id="1">
-                <span class="pokemon-number">#001</span>
-
-                <img src="./assets/001.png" alt="Bulbasaur">
-
-                <h3>Bulbasaur</h3>
-
-                <div class="pokemon-types">
-                    <span>Planta</span>
-                    <span>Veneno</span>
-                </div>
-            </button>
-            <button class="pokemon-card" type="button" data-id="1">
-                <span class="pokemon-number">#001</span>
-
-                <img src="./assets/001.png" alt="Bulbasaur">
-
-                <h3>Bulbasaur</h3>
-
-                <div class="pokemon-types">
-                    <span>Planta</span>
-                    <span>Veneno</span>
-                </div>
-            </button>
-            <button class="pokemon-card" type="button" data-id="1">
-                <span class="pokemon-number">#001</span>
-
-                <img src="./assets/001.png" alt="Bulbasaur">
-
-                <h3>Bulbasaur</h3>
-
-                <div class="pokemon-types">
-                    <span>Planta</span>
-                    <span>Veneno</span>
-                </div>
-            </button>
-            <button class="pokemon-card" type="button" data-id="1">
-                <span class="pokemon-number">#001</span>
-
-                <img src="./assets/001.png" alt="Bulbasaur">
-
-                <h3>Bulbasaur</h3>
-
-                <div class="pokemon-types">
-                    <span>Planta</span>
-                    <span>Veneno</span>
-                </div>
-            </button>
-            <button class="pokemon-card" type="button" data-id="1">
-                <span class="pokemon-number">#001</span>
-
-                <img src="./assets/001.png" alt="Bulbasaur">
-
-                <h3>Bulbasaur</h3>
-
-                <div class="pokemon-types">
-                    <span>Planta</span>
-                    <span>Veneno</span>
-                </div>
-            </button>
-            <button class="pokemon-card" type="button" data-id="1">
-                <span class="pokemon-number">#001</span>
-
-                <img src="./assets/001.png" alt="Bulbasaur">
-
-                <h3>Bulbasaur</h3>
-
-                <div class="pokemon-types">
-                    <span>Planta</span>
-                    <span>Veneno</span>
-                </div>
-            </button>
-            <button class="pokemon-card" type="button" data-id="1">
-                <span class="pokemon-number">#001</span>
-
-                <img src="./assets/001.png" alt="Bulbasaur">
-
-                <h3>Bulbasaur</h3>
-
-                <div class="pokemon-types">
-                    <span>Planta</span>
-                    <span>Veneno</span>
-                </div>
-            </button>
+        <section class="cards" id="cards">
 
         </section>
         <div class="paginacao-btns">
@@ -281,20 +181,28 @@
                         <img src="./assets/icons/modal-chart.svg" alt="">
                         <h3 id="stats-title">Estatísticas Base</h3>
                     </div>
-                    <div class="modal-stat"><span>HP</span><span class="stat-track" aria-hidden="true"><span
-                                class="stat-hp"></span></span><span>45</span></div>
-                    <div class="modal-stat"><span>Ataque</span><span class="stat-track" aria-hidden="true"><span
-                                class="stat-attack"></span></span><span>49</span></div>
-                    <div class="modal-stat"><span>Defesa</span><span class="stat-track" aria-hidden="true"><span
-                                class="stat-defense"></span></span><span>49</span></div>
-                    <div class="modal-stat"><span>Velocidade</span><span class="stat-track" aria-hidden="true"><span
-                                class="stat-speed"></span></span><span>45</span></div>
+                    <div class="modal-stat">
+                        <span>HP</span>
+                        <span class="stat-track" aria-hidden="true"><span class="stat-hp"></span></span>
+                        <span>45</span>
+                    </div>
+                    <div class="modal-stat">
+                        <span>Ataque</span>
+                        <span class="stat-track" aria-hidden="true"><span
+                                class="stat-attack"></span></span><span>49</span>
+                    </div>
+                    <div class="modal-stat">
+                        <span>Defesa</span>
+                        <span class="stat-track" aria-hidden="true"><span
+                                class="stat-defense"></span></span><span>49</span>
+                    </div>
+                    <div class="modal-stat">
+                        <span>Velocidade</span>
+                        <span class="stat-track" aria-hidden="true"><span
+                                class="stat-speed"></span></span><span>45</span>
+                    </div>
                 </section>
                 <hr>
-                <nav class="modal-navigation" aria-label="Navegar entre Pokémon">
-                    <button type="button" class="modal-previous">&lt; Pokémon Anterior</button>
-                    <button type="button" class="modal-next">Próximo Pokémon &gt;</button>
-                </nav>
             </article>
             <button type="button" class="modal-close" aria-label="Fechar modal">
                 &times;
@@ -304,7 +212,7 @@
         <footer>
             <div class="footer-top">
                 <img src="./assets/375px-Pokédex_logo(1).png" alt="">
-                <a href="">Voltar ao início</a>
+                <a href="#header">Voltar ao início</a>
             </div>
             <p>Explore o universo Pokémon, descubra suas características e encontre seus favoritos.</p>
 
@@ -312,7 +220,8 @@
 
             <div class="footer-bot">
                 <small>© 2026 Pokédex. Projeto de estudo.</small>
-                <small>Dados fornecidos pela <a href="" class="api-link"> PokéAPI </a></small>
+                <small>Dados fornecidos pela <a href="https://pokeapi.co/" class="api-link" target="_blank"> PokéAPI
+                    </a></small>
             </div>
         </footer>
 
