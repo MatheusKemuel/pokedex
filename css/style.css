@@ -188,12 +188,12 @@ form {
     flex-shrink: 0;
 }
 
-.filters-right article img {
+.filters-right .clear-filters img {
     width: 36px;
     height: 36px;
 }
 
-.filters-right article {
+.filters-right .clear-filters {
     display: flex;
     gap: 5px;
     align-items: center;
@@ -376,6 +376,21 @@ dialog>img {
     height: auto;
 }
 
+dialog .pokemon-types {
+    max-width: 100%;
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(4px, 0.8cqw, 10px);
+}
+
+dialog .pokemon-types span {
+    width: auto;
+    height: auto;
+    padding: clamp(6px, 1cqw, 12px) clamp(10px, 1.5cqw, 18px);
+    white-space: nowrap;
+}
+
 dialog::backdrop {
     background-color: rgb(0 0 0 / .5);
 }
@@ -397,7 +412,7 @@ dialog::backdrop {
 }
 
 .modal-details-left figure {
-    width: 20.8333cqw;
+    width: 18cqw;
     max-width: 100%;
     aspect-ratio: 1;
     flex-shrink: 0;
@@ -587,6 +602,13 @@ dialog::backdrop {
 }
 
 
+/* .modal-img {
+    max-width: 180px;
+    height: 100%;
+    margin: 0 auto;
+} */
+
+
 
 .modal-close {
     position: absolute;
@@ -596,15 +618,72 @@ dialog::backdrop {
     height: 5cqw;
     display: grid;
     place-items: center;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 3.5cqw;
+    padding: 0;
+    border: 1px solid rgb(255 255 255 / 30%);
+    color: var(--branco);
+    font-size: 2.6cqw;
+    font-weight: 400;
     line-height: 1;
     cursor: pointer;
     z-index: 1;
     background-color: var(--grafite);
     border-radius: 50%;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 22%), inset 0 1px 0 rgb(255 255 255 / 12%);
+    transition: background-color 160ms ease, box-shadow 160ms ease;
+}
+
+@media (hover: hover) {
+    .modal-close:hover {
+        background-color: #383e4d;
+        box-shadow: 0 6px 16px rgb(0 0 0 / 28%);
+    }
+}
+
+.modal-close:focus-visible {
+    outline: 3px solid var(--amarelo);
+    outline-offset: 3px;
+}
+
+.modal-close:active {
+    background-color: #171a22;
+    box-shadow: inset 0 2px 4px rgb(0 0 0 / 25%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .modal-close {
+        transition: none;
+    }
+}
+
+.modal-image-controls {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.shiny-toggle {
+    padding: clamp(6px, 0.7cqw, 8px) clamp(10px, 1.3cqw, 16px);
+    border: none;
+    border-radius: 20px;
+    background-color: var(--grafite);
+    color: var(--branco);
+    font: inherit;
+    cursor: pointer;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.shiny-toggle[aria-pressed="true"] {
+    background-color: var(--amarelo);
+    color: var(--grafite);
+}
+
+.shiny-toggle:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
@@ -619,8 +698,7 @@ dialog::backdrop {
         right: 4px;
         width: 36px;
         height: 36px;
-        font-size: 28px;
-        background: var(--grafite);
+        font-size: 24px;
         border-radius: 50%;
     }
 
@@ -645,7 +723,7 @@ dialog::backdrop {
     }
 
     .modal-details-left figure {
-        width: min(218px, 100%);
+        width: 100%;
     }
 
     .modal-poke-name {
@@ -801,5 +879,76 @@ dialog::backdrop {
 
     .hero-texts {
         margin: 0 auto;
+    }
+}
+
+.filters-mobile {
+    display: none;
+}
+
+.clear-filters {
+    border: 1px solid #d9d9e2;
+    color: var(--grafite);
+    font-family: inherit;
+}
+
+#type-filter:focus-visible,
+.clear-filters:focus-visible {
+    outline: 3px solid var(--vermelho);
+    outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+    .filters {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 12px;
+        margin: 24px 16px;
+    }
+
+    .filters-left,
+    .filters-center {
+        display: none;
+    }
+
+    .filters-mobile {
+        display: grid;
+        gap: 8px;
+        min-width: 0;
+    }
+
+    .filters-mobile label {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--grafite);
+    }
+
+    #type-filter {
+        width: 100%;
+        min-width: 0;
+        min-height: 48px;
+        padding: 10px 12px;
+        border: 1px solid #d9d9e2;
+        border-radius: 12px;
+        background-color: var(--branco);
+        color: var(--grafite);
+        font: inherit;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 6%);
+    }
+
+    .filters-right .clear-filters {
+        min-height: 48px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        font-size: 14px;
+        box-shadow: none;
+    }
+
+    .filters-right .clear-filters img {
+        width: 20px;
+        height: 20px;
     }
 }
