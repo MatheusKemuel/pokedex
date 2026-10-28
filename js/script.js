@@ -10,6 +10,13 @@ const input = document.querySelector(".search-bar")
 
 const shinyButton = document.querySelector(".shiny-toggle");
 
+const mensagemFiltro = document.querySelector("#mensagem-filtro");
+
+const buttonPrev = document.querySelector(".modal-previous")
+const buttonNext = document.querySelector(".modal-next")
+let pokemonAtualId = null;
+let carregandoModal = false;
+
 let URL = "https://pokeapi.co/api/v2/pokemon/";
 
 const coresTipos = {
@@ -51,6 +58,8 @@ function mostrarPokemon(poke) {
     const tipoPrincipal = poke.types[0].type.name;
     const cor = coresTipos[tipoPrincipal] ?? "#F7F7FA";
 
+
+    //formata o id do pokemon
     let pokeId = poke.id.toString();
     if (pokeId.length === 1) {
         pokeId = "00" + pokeId;
@@ -141,10 +150,6 @@ form.addEventListener("submit", async (e) => {
 
 ////preeche o modal com os dados dinâmicos
 async function preencherModal(poke) {
-    modal.querySelector(".pokemon-number").textContent = `#${String(poke.id).padStart(3, "0")}`;
-
-    modal.querySelector(".modal-poke-name").textContent = poke.name;
-
     // const imagem = modal.querySelector(".modal-img");
     // imagem.src = poke.sprites.other.home.front_default;
 
@@ -155,6 +160,9 @@ async function preencherModal(poke) {
     }
 
     const especie = await resposta.json();
+
+    modal.querySelector(".pokemon-number").textContent = `#${String(poke.id).padStart(3, "0")}`;
+    modal.querySelector(".modal-poke-name").textContent = poke.name;
 
     const descricao = especie.flavor_text_entries.find(
         item => item.language.name === "en"
@@ -210,7 +218,7 @@ async function preencherModal(poke) {
 
 
 
-    //tipos
+    /////tipos
     modal.querySelector(".pokemon-types").innerHTML = poke.types.map(item => {
         const tipo = item.type.name;
         const cor = coresTipos[tipo] ?? "#F7F7FA";
@@ -262,13 +270,18 @@ async function preencherModal(poke) {
 
 
 
-///////evento de click no card para abrir o modal
-cardsPokemon.addEventListener("click", async function (event) {
-    const card = event.target.closest(".pokemon-card");
+function atualizarBotoesModal() {
+    const foraDaLista = pokemonAtualId === null || pokemonAtualId > 151;
+    buttonPrev.disabled = carregandoModal || foraDaLista || pokemonAtualId <= 1;
+    buttonNext.disabled = carregandoModal || foraDaLista || pokemonAtualId >= 151;
+}
 
-    if (!card) return;
+async function carregarPokemonModal(id, abrirModal = false) {
+    if (carregandoModal || !Number.isInteger(id) || id < 1) return;
+    if (!abrirModal && id > 151) return;
 
-    const id = card.dataset.id;
+    carregandoModal = true;
+    atualizarBotoesModal();
 
     try {
 
@@ -281,11 +294,32 @@ cardsPokemon.addEventListener("click", async function (event) {
         const pokemon = await response.json();
 
         await preencherModal(pokemon);
-        modal.showModal();
+        pokemonAtualId = pokemon.id;
+        if (abrirModal) modal.showModal();
     } catch (erro) {
         console.error("Error opening dialog:", erro);
         alert(erro.message);
+    } finally {
+        carregandoModal = false;
+        atualizarBotoesModal();
     }
+}
+
+buttonPrev.addEventListener("click", () => {
+    if (pokemonAtualId !== null) carregarPokemonModal(pokemonAtualId - 1);
+});
+
+buttonNext.addEventListener("click", () => {
+    if (pokemonAtualId !== null) carregarPokemonModal(pokemonAtualId + 1);
+});
+
+atualizarBotoesModal();
+
+///////evento de click no card para abrir o modal
+cardsPokemon.addEventListener("click", function (event) {
+    const card = event.target.closest(".pokemon-card");
+    if (!card) return;
+    carregarPokemonModal(Number(card.dataset.id), true);
 });
 
 
@@ -309,6 +343,7 @@ filtros.querySelectorAll("[data-type]").forEach(filtro => {
     seletorTipo.append(option);
 });
 
+
 function correspondeAoTipo(poke) {
     return tipoSelecionado === "all" ||
         poke.types.some(item => item.type.name === tipoSelecionado);
@@ -324,7 +359,20 @@ function aplicarFiltro(tipo) {
     });
 
     cardsPokemon.replaceChildren();
-    todosPokemons.filter(correspondeAoTipo).forEach(mostrarPokemon);
+
+    const pokemonsFiltrados = todosPokemons.filter(correspondeAoTipo);
+
+    mensagemFiltro.hidden = true;
+
+    if (pokemonsFiltrados.length === 0) {
+        mensagemFiltro.textContent =
+            "No Pokémon found for this type.";
+
+        mensagemFiltro.hidden = false;
+        return;
+    }
+
+    pokemonsFiltrados.forEach(mostrarPokemon);
 }
 
 filtros.addEventListener("click", function (event) {
@@ -341,3 +389,6 @@ limparFiltros.addEventListener("click", function () {
     input.value = "";
     aplicarFiltro("all");
 });
+
+
+
