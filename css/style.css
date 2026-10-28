@@ -216,7 +216,14 @@ form {
     display: flex;
     justify-content: space-between;
     margin: 30px 50px;
-    align-items:start;
+    align-items: start;
+}
+
+.msg-filter {
+    text-align: center;
+    font-size: x-large;
+    color: var(--grafite-light);
+    margin: 100px 0;
 }
 
 
@@ -351,7 +358,7 @@ footer hr {
 
 
 
-
+/* MODAL */
 dialog {
     background: none;
     border: none;
@@ -364,6 +371,8 @@ dialog {
     container-type: inline-size;
     max-height: calc(100dvh - 32px);
     scrollbar-width: none;
+
+    transform: translateY();
 }
 
 dialog:focus {
@@ -575,6 +584,7 @@ dialog::backdrop {
 
 .modal-navigation {
     display: grid;
+    width: 100%;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.8333cqw;
 }
@@ -589,6 +599,8 @@ dialog::backdrop {
     font: inherit;
     box-shadow: 0 4px 2px rgb(0 0 0 / 25%);
     cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease,
+        background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .modal-navigation .modal-next {
@@ -599,6 +611,40 @@ dialog::backdrop {
 .modal-navigation button:disabled {
     opacity: 0.5;
     cursor: default;
+}
+
+.modal-navigation button:focus-visible {
+    outline: 2px solid var(--grafite);
+    outline-offset: 3px;
+}
+
+@media (hover: hover) {
+    .modal-navigation button:not(:disabled):hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 16px rgb(32 35 45 / 20%);
+    }
+
+    .modal-navigation .modal-previous:not(:disabled):hover {
+        background-color: var(--grafite);
+        border-color: var(--grafite);
+        color: var(--branco);
+    }
+
+    .modal-navigation .modal-next:not(:disabled):hover {
+        background-color: #c62828;
+        border-color: #c62828;
+        box-shadow: 0 8px 18px rgb(229 57 53 / 30%);
+    }
+}
+
+.modal-navigation button:not(:disabled):active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgb(32 35 45 / 20%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .modal-navigation button { transition: none; }
+    .modal-navigation button:not(:disabled):hover { transform: none; }
 }
 
 
@@ -629,31 +675,17 @@ dialog::backdrop {
     background-color: var(--grafite);
     border-radius: 50%;
     box-shadow: 0 4px 12px rgb(0 0 0 / 22%), inset 0 1px 0 rgb(255 255 255 / 12%);
-    transition: background-color 160ms ease, box-shadow 160ms ease;
-}
+    transition: .3s;
 
-@media (hover: hover) {
-    .modal-close:hover {
+    &:hover {
         background-color: #383e4d;
         box-shadow: 0 6px 16px rgb(0 0 0 / 28%);
     }
 }
 
-.modal-close:focus-visible {
-    outline: 3px solid var(--amarelo);
-    outline-offset: 3px;
-}
 
-.modal-close:active {
-    background-color: #171a22;
-    box-shadow: inset 0 2px 4px rgb(0 0 0 / 25%);
-}
 
-@media (prefers-reduced-motion: reduce) {
-    .modal-close {
-        transition: none;
-    }
-}
+
 
 .modal-image-controls {
     width: 100%;
@@ -665,7 +697,7 @@ dialog::backdrop {
 }
 
 .shiny-toggle {
-    padding: clamp(6px, 0.7cqw, 8px) clamp(10px, 1.3cqw, 16px);
+    padding: 8px;
     border: none;
     border-radius: 20px;
     background-color: var(--grafite);
@@ -673,7 +705,6 @@ dialog::backdrop {
     font: inherit;
     cursor: pointer;
     flex-shrink: 0;
-    white-space: nowrap;
 }
 
 .shiny-toggle[aria-pressed="true"] {
@@ -681,10 +712,29 @@ dialog::backdrop {
     color: var(--grafite);
 }
 
-.shiny-toggle:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+
+@keyframes subirModal {
+    from {
+        transform: translateY(1000px);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
+
+dialog[open] {
+    animation: subirModal .5s ease-in-out;
+}
+
+
+
+
+
+
+/* Responsividade */
+
+
+
 
 @media (max-width: 768px) {
     dialog {
@@ -728,6 +778,7 @@ dialog::backdrop {
 
     .modal-poke-name {
         font-size: clamp(28px, 8vw, 48px);
+
     }
 
     .modal-right-title,
@@ -778,11 +829,6 @@ dialog::backdrop {
         gap: 10px;
     }
 }
-
-
-
-
-/* Responsividade */
 
 @media (max-width: 1330px) {
     .hero {

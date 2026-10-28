@@ -151,6 +151,8 @@
             </div>
         </section>
 
+        <p id="mensagem-filtro" class="msg-filter" role="status" hidden></p>
+
         <section class="cards" id="cards">
 
         </section>
@@ -167,7 +169,7 @@
                 <figure class="modal">
                     <img src="./assets/001.png" alt="Bulbasaur" class="modal-img">
                 </figure>
-                <h3 class="modal-poke-name"></h3>
+                <h3 class="modal-poke-name capitalize"></h3>
 
                 <div class="pokemon-types">
                     <span></span>
@@ -226,6 +228,10 @@
                     </div>
                 </section>
                 <hr>
+                <nav class="modal-navigation" aria-label="Pokémon navigation">
+                    <button type="button" class="modal-previous">&lt; Previous</button>
+                    <button type="button" class="modal-next">Next &gt;</button>
+                </nav>
             </article>
             <button type="button" class="modal-close" aria-label="Close dialog">
                 &times;
