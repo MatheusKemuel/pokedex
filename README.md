@@ -45,18 +45,39 @@ ou abra o arquivo index.html com o navegador pelo explorador de arquivos.
 
  O JavaScript consulta a PokéAPI e guarda os Pokémon carregados no array `todosPokemons()`. A função `mostraPokemon()` cria os cards.
 
+
+
+![alt text](<Captura de tela 2026-10-28 161249-1.png>)
+
+
+
+
 ### Pesquisa 
 
  A pesquisa consulta a API pelo nome ou número informado e exibe o pokémon encontrado.
+
+
+![alt text](<Captura de tela 2026-10-28 161235.png>)
+
+
 
 ### Filtro
 
  Os filtros usam os dados armazenados em todosPokemon.
  O método `filter` seleciona os Pokémon, enquanto `some` verifica se algum dos seus tipos corresponde ao escolhido.
 
+
+![alt text](<Captura de tela 2026-10-28 161242.png>)
+
+
+
 ### Modal 
 
  Ao clicar em um card, o site usa seu data-id para consultar os dados. A função preencherModal atualiza as informações antes de abrir o dialog, então o modal ja abre com os dados atualizados.
+
+
+![alt text](<Captura de tela 2026-10-28 161258.png>)
+
 
 ### Navegação no modal
 
