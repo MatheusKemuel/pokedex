@@ -42,14 +42,36 @@ const coresTipos = {
 
 
 
-for (let i = 1; i <= 151; i++) {
-    fetch(URL + i)
-        .then((response) => response.json())
-        .then(poke => {
-            todosPokemons.push(poke)
-            if (!exibindoPesquisa && correspondeAoTipo(poke)) mostrarPokemon(poke);
-        })
+async function carregarPokemons() {
+    try {
+        const requisicoes = [];
+
+        for (let i = 1; i <= 151; i++) {
+            const requisicao = fetch(URL + i)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erro ao carregar Pokémon #${i}`);
+                    }
+
+                    return response.json();
+                });
+
+            requisicoes.push(requisicao);
+        }
+
+        const pokemons = await Promise.all(requisicoes);
+
+        todosPokemons.push(...pokemons);
+
+        if (!exibindoPesquisa) {
+            aplicarFiltro(tipoSelecionado);
+        }
+    } catch (erro) {
+        console.error("Erro ao carregar os Pokémon:", erro);
+    }
 }
+
+carregarPokemons();
 
 
 /////////////// função que cria a div dos cards dos pokémons dinamicamente ///////////////
