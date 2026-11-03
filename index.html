@@ -39,108 +39,58 @@
         <section class="filters">
             <div class="filters-left">
                 <img src="./assets/icons/filter.svg" alt="">
-                <p>Filter by type:</p>
+                <p>Filter by generation:</p>
             </div>
             <div class="filters-mobile">
-                <label for="type-filter">Filter by type</label>
-                <select id="type-filter">
-                    <option value="all">All types</option>
+                <label for="generation-filter">Filter by generation</label>
+                <select id="generation-filter">
+                    <option value="1">Generation I</option>
+                    <option value="2">Generation II</option>
+                    <option value="3">Generation III</option>
+                    <option value="4">Generation IV</option>
+                    <option value="5">Generation V</option>
+                    <option value="6">Generation VI</option>
+                    <option value="7">Generation VII</option>
+                    <option value="8">Generation VIII</option>
+                    <option value="9">Generation IX</option>
                 </select>
             </div>
             <div class="filters-center">
-                <article class="filters-active" data-type="all">
+                <article class="filters-active" data-generation="1">
                     <img src="./assets/icons/tabler-icon-pokeball.svg" alt="">
-                    <p>All</p>
+                    <p>Generation I</p>
                 </article>
-                <article data-type="grass">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/12.png"
-                        alt="">
-                    <p>Grass</p>
+                <article data-generation="2">
+                    <img src="./assets/icons/tabler-icon-pokeball.svg" alt="">
+                    <p>Generation II</p>
                 </article>
-                <article data-type="fire">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/10.png"
-                        alt="">
-                    <p>Fire</p>
+                <article data-generation="3">
+                    <img src="./assets/icons/tabler-icon-pokeball.svg" alt="">
+                    <p>Generation III</p>
                 </article>
-                <article data-type="water">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/11.png"
-                        alt="">
-                    <p>Water</p>
+                <article data-generation="4">
+                    <img src="./assets/icons/tabler-icon-pokeball.svg" alt="">
+                    <p>Generation IV</p>
                 </article>
-                <article data-type="electric">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/13.png"
-                        alt="">
-                    <p>Electric</p>
+                <article data-generation="5">
+                    <img src="./assets/icons/tabler-icon-pokeball.svg" alt="">
+                    <p>Generation V</p>
                 </article>
-                <article data-type="psychic">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/14.png"
-                        alt="">
-                    <p>Psychic</p>
+                <article data-generation="6">
+                    <img src="./assets/icons/tabler-icon-pokeball.svg" alt="">
+                    <p>Generation VI</p>
                 </article>
-                <article data-type="ground">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/5.png"
-                        alt="">
-                    <p>Ground</p>
+                <article data-generation="7">
+                    <img src="./assets/icons/tabler-icon-pokeball.svg" alt="">
+                    <p>Generation VII</p>
                 </article>
-                <article data-type="ice">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/15.png"
-                        alt="">
-                    <p>Ice</p>
+                <article data-generation="8">
+                    <img src="./assets/icons/tabler-icon-pokeball.svg" alt="">
+                    <p>Generation VIII</p>
                 </article>
-                <article data-type="dark">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/17.png"
-                        alt="">
-                    <p>Dark</p>
-                </article>
-                <article data-type="normal">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/1.png"
-                        alt="">
-                    <p>Normal</p>
-                </article>
-                <article data-type="fighting">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/2.png"
-                        alt="">
-                    <p>Fighting</p>
-                </article>
-                <article data-type="flying">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/3.png"
-                        alt="">
-                    <p>Flying</p>
-                </article>
-                <article data-type="poison">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/4.png"
-                        alt="">
-                    <p>Poison</p>
-                </article>
-                <article data-type="rock">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/6.png"
-                        alt="">
-                    <p>Rock</p>
-                </article>
-                <article data-type="bug">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/7.png"
-                        alt="">
-                    <p>Bug</p>
-                </article>
-                <article data-type="ghost">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/8.png"
-                        alt="">
-                    <p>Ghost</p>
-                </article>
-                <article data-type="steel">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/9.png"
-                        alt="">
-                    <p>Steel</p>
-                </article>
-                <article data-type="dragon">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/16.png"
-                        alt="">
-                    <p>Dragon</p>
-                </article>
-                <article data-type="fairy">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/18.png"
-                        alt="">
-                    <p>Fairy</p>
+                <article data-generation="9">
+                    <img src="./assets/icons/tabler-icon-pokeball.svg" alt="">
+                    <p>Generation IX</p>
                 </article>
             </div>
             <div class="filters-right">

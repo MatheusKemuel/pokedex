@@ -167,18 +167,19 @@ form {
     justify-content: center;
     border-radius: 50px;
     box-shadow: 1px 12px 15px -4px rgba(0, 0, 0, 0.2);
-    background-color: var(--off-white);
+    background-color: var(--grafite);
+    color: var(--off-white);
     font-size: larger;
     cursor: pointer;
     transition: .3s;
 
     &:hover {
-        background-color: rgb(199, 199, 199);
+        background-color: #343846;
     }
 }
 
 .filters-center article.filters-active {
-    background-color: var(--grafite);
+    background-color: var(--vermelho);
     color: var(--off-white);
 }
 
@@ -267,11 +268,11 @@ form {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.pokemon-card:hover .alt-img {
+.pokemon-card.animation-ready:hover .alt-img {
     display: block;
 }
 
-.pokemon-card:hover .img-card {
+.pokemon-card.animation-ready:hover .img-card {
     display: none;
 }
 
@@ -938,7 +939,7 @@ dialog[open] {
     font-family: inherit;
 }
 
-#type-filter:focus-visible,
+#generation-filter:focus-visible,
 .clear-filters:focus-visible {
     outline: 3px solid var(--vermelho);
     outline-offset: 3px;
@@ -970,7 +971,7 @@ dialog[open] {
         color: var(--grafite);
     }
 
-    #type-filter {
+    #generation-filter {
         width: 100%;
         min-width: 0;
         min-height: 48px;
