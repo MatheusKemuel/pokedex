@@ -2,7 +2,19 @@ const modal = document.querySelector("dialog");
 const closeModal = document.querySelector(".modal-close");
 const cardsPokemon = document.querySelector("#cards")
 const todosPokemons = [];
-let tipoSelecionado = "all";
+let geracaoSelecionada = "1";
+let requisicaoAtual = 0;
+const geracoes = {
+    "1": { inicio: 1, fim: 151 },
+    "2": { inicio: 152, fim: 251 },
+    "3": { inicio: 252, fim: 386 },
+    "4": { inicio: 387, fim: 493 },
+    "5": { inicio: 494, fim: 649 },
+    "6": { inicio: 650, fim: 721 },
+    "7": { inicio: 722, fim: 809 },
+    "8": { inicio: 810, fim: 905 },
+    "9": { inicio: 906, fim: 1025 }
+};
 let exibindoPesquisa = false;
 
 const form = document.querySelector(".form")
@@ -42,36 +54,42 @@ const coresTipos = {
 
 
 
-async function carregarPokemons() {
-    try {
-        const requisicoes = [];
+async function carregarPokemons(geracao) {
+    const { inicio, fim } = geracoes[geracao];
+    const requisicoes = [];
 
-        for (let i = 1; i <= 151; i++) {
-            const requisicao = fetch(URL + i)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Erro ao carregar Pokémon #${i}`);
-                    }
+    for (let id = inicio; id <= fim; id++) {
+        const jaCarregado = todosPokemons.some(poke => poke.id === id);
 
-                    return response.json();
-                });
+        if (jaCarregado) continue;
 
-            requisicoes.push(requisicao);
-        }
+        const requisicao = fetch(URL + id)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro ao carregar Pokémon #${id}`);
+                }
 
-        const pokemons = await Promise.all(requisicoes);
+                return response.json();
+            });
 
-        todosPokemons.push(...pokemons);
-
-        if (!exibindoPesquisa) {
-            aplicarFiltro(tipoSelecionado);
-        }
-    } catch (erro) {
-        console.error("Erro ao carregar os Pokémon:", erro);
+        requisicoes.push(requisicao);
     }
+
+    const novosPokemons = await Promise.all(requisicoes);
+
+    // Evita duplicados se houver carregamentos simultâneos.
+    novosPokemons.forEach(poke => {
+        if (!todosPokemons.some(item => item.id === poke.id)) {
+            todosPokemons.push(poke);
+        }
+    });
+
+    return todosPokemons
+        .filter(poke => poke.id >= inicio && poke.id <= fim)
+        .sort((a, b) => a.id - b.id);
 }
 
-carregarPokemons();
+
 
 
 /////////////// função que cria a div dos cards dos pokémons dinamicamente ///////////////
@@ -79,6 +97,7 @@ carregarPokemons();
 function mostrarPokemon(poke) {
     const tipoPrincipal = poke.types[0].type.name;
     const cor = coresTipos[tipoPrincipal] ?? "#F7F7FA";
+    const imagemAnimadaUrl = poke.sprites.other.showdown?.front_default;
 
 
     //formata o id do pokemon
@@ -96,7 +115,7 @@ function mostrarPokemon(poke) {
                 <span class="pokemon-number">#${pokeId}</span>
 
                 <img class="img-card" src="${poke.sprites.other.home.front_default}" alt="${poke.name}">
-                <img class="alt-img" src="${poke.sprites.other.showdown.front_default}" alt="${poke.name}">
+                ${imagemAnimadaUrl ? `<img class="alt-img" alt="${poke.name}">` : ""}
 
                 <h3 class="capitalize">${poke.name}</h3>
 
@@ -121,6 +140,20 @@ function mostrarPokemon(poke) {
                 </div>
             </button>
         `;
+    if (imagemAnimadaUrl) {
+        const card = div.querySelector(".pokemon-card");
+        const imagemAnimada = div.querySelector(".alt-img");
+
+        // Só permite a troca no hover depois que a animação carregar.
+        imagemAnimada.addEventListener("load", () => {
+            card.classList.toggle("animation-ready", imagemAnimada.naturalWidth > 0);
+        });
+        imagemAnimada.addEventListener("error", () => {
+            card.classList.remove("animation-ready");
+        });
+        imagemAnimada.src = imagemAnimadaUrl;
+    }
+
     cardsPokemon.append(div)
 }
 
@@ -151,6 +184,9 @@ form.addEventListener("submit", async (e) => {
         const pokemon = await response.json();
 
         exibindoPesquisa = true;
+
+        mensagemFiltro.hidden = true;
+
         cardsPokemon.replaceChildren();
         mostrarPokemon(pokemon);
     } catch (erro) {
@@ -293,14 +329,17 @@ async function preencherModal(poke) {
 
 
 function atualizarBotoesModal() {
-    const foraDaLista = pokemonAtualId === null || pokemonAtualId > 151;
-    buttonPrev.disabled = carregandoModal || foraDaLista || pokemonAtualId <= 1;
-    buttonNext.disabled = carregandoModal || foraDaLista || pokemonAtualId >= 151;
+    const { inicio, fim } = geracoes[geracaoSelecionada];
+    const foraDaLista = pokemonAtualId === null ||
+        pokemonAtualId < inicio || pokemonAtualId > fim;
+    buttonPrev.disabled = carregandoModal || foraDaLista || pokemonAtualId <= inicio;
+    buttonNext.disabled = carregandoModal || foraDaLista || pokemonAtualId >= fim;
 }
 
 async function carregarPokemonModal(id, abrirModal = false) {
     if (carregandoModal || !Number.isInteger(id) || id < 1) return;
-    if (!abrirModal && id > 151) return;
+    const { inicio, fim } = geracoes[geracaoSelecionada];
+    if (!abrirModal && (id < inicio || id > fim)) return;
 
     carregandoModal = true;
     atualizarBotoesModal();
@@ -353,64 +392,61 @@ closeModal.onclick = function () {
 
 
 ///////filtro
+
 const filtros = document.querySelector(".filters-center");
-const seletorTipo = document.querySelector("#type-filter");
+const seletorGeracao = document.querySelector("#generation-filter");
 const limparFiltros = document.querySelector(".clear-filters");
 
-filtros.querySelectorAll("[data-type]").forEach(filtro => {
-    if (filtro.dataset.type === "all") return;
-    const option = document.createElement("option");
-    option.value = filtro.dataset.type;
-    option.textContent = filtro.querySelector("p").textContent;
-    seletorTipo.append(option);
-});
-
-
-function correspondeAoTipo(poke) {
-    return tipoSelecionado === "all" ||
-        poke.types.some(item => item.type.name === tipoSelecionado);
-}
-
-function aplicarFiltro(tipo) {
-    tipoSelecionado = tipo;
+async function aplicarFiltro(geracao) {
+    geracaoSelecionada = geracao;
     exibindoPesquisa = false;
-    seletorTipo.value = tipo;
+    seletorGeracao.value = geracao;
 
-    filtros.querySelectorAll("[data-type]").forEach(filtro => {
-        filtro.classList.toggle("filters-active", filtro.dataset.type === tipo);
+    // Identifica esta seleção para evitar que uma resposta antiga
+    // substitua os cards de uma seleção mais recente.
+    const requisicao = ++requisicaoAtual;
+
+    filtros.querySelectorAll("[data-generation]").forEach(filtro => {
+        filtro.classList.toggle(
+            "filters-active",
+            filtro.dataset.generation === geracao
+        );
     });
 
     cardsPokemon.replaceChildren();
+    mensagemFiltro.textContent = "Loading Pokémon...";
+    mensagemFiltro.hidden = false;
 
-    const pokemonsFiltrados = todosPokemons.filter(correspondeAoTipo);
+    try {
+        const pokemons = await carregarPokemons(geracao);
 
-    mensagemFiltro.hidden = true;
+        if (requisicao !== requisicaoAtual || exibindoPesquisa) return;
 
-    if (pokemonsFiltrados.length === 0) {
-        mensagemFiltro.textContent =
-            "No Pokémon found for this type.";
+        mensagemFiltro.hidden = true;
+        pokemons.forEach(mostrarPokemon);
+    } catch (erro) {
+        if (requisicao !== requisicaoAtual || exibindoPesquisa) return;
 
+        console.error(erro);
+        mensagemFiltro.textContent = "Unable to load Pokémon. Try again.";
         mensagemFiltro.hidden = false;
-        return;
     }
-
-    pokemonsFiltrados.forEach(mostrarPokemon);
 }
 
-filtros.addEventListener("click", function (event) {
-    const filtro = event.target.closest("[data-type]");
+filtros.addEventListener("click", event => {
+    const filtro = event.target.closest("[data-generation]");
     if (!filtro) return;
-    aplicarFiltro(filtro.dataset.type);
+
+    aplicarFiltro(filtro.dataset.generation);
 });
 
-seletorTipo.addEventListener("change", function () {
-    aplicarFiltro(seletorTipo.value);
+seletorGeracao.addEventListener("change", () => {
+    aplicarFiltro(seletorGeracao.value);
 });
 
-limparFiltros.addEventListener("click", function () {
+limparFiltros.addEventListener("click", () => {
     input.value = "";
-    aplicarFiltro("all");
+    aplicarFiltro("1");
 });
 
-
-
+aplicarFiltro(geracaoSelecionada);
